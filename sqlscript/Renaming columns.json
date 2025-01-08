@@ -1,0 +1,17 @@
+{
+	"name": "Renaming columns",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP 101 *\nFROM OPENROWSET(\n    BULK 'https://anudeepterraformstorage.dfs.core.windows.net/terraform-data-lake/occupations.csv',\n    FORMAT = 'CSV',\n    FIELDTERMINATOR = ',',\n    FIRSTROW = 2,           -- Skip header row\n    PARSER_VERSION = '2.0'\n)\nWITH (\n    [id]                INT,\n    [job name]         VARCHAR(100),\n    [median wage]      VARCHAR(100),\n    [projected growth] VARCHAR(100),\n    [risk level]       VARCHAR(100),\n    [job score]        VARCHAR(100),\n    [popularity]       VARCHAR(100)\n) AS [result];\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
